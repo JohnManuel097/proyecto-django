@@ -1,0 +1,77 @@
+{% extends 'inicio/encabezado.html' %}
+{%block titulo%}Cargar Archivo{%endblock%}
+
+{%block imagen%}
+{% load static %}
+{%static 'inicio/images/contact.png'%}
+{% endblock %}
+{%block titulonav%}Archivo{%endblock%}
+{%block titulondev%}Archivos {%endblock%}
+		{%block header%}
+			<!--Encabezdo -->
+			<div class="page-header">
+				<div class="page-title">
+					<h3>Envia tu archivo
+				    <small>Ingresa tu informacion</small></h3>
+				</div>
+            </div>
+		{%endblock%}
+			<!-- /Encabezado-->
+				<!--Barra-->
+			{%block barra%}
+				<div class="breadcrumb-line">
+					<ul class="breadcrumb">
+					   
+					   <ol>
+						   <a href="{%url 'principal1'%}">
+							   {%if request.path == '/' %}
+								   Principal
+							   {%else%}
+								   Principal{{request.path}}
+							   {%endif%}
+						   </a>
+					  
+						</ol>
+					</ul>
+					</div>
+			{%endblock%}
+				<!-- /Barra-->	
+
+
+
+			<!-- Formulario -->
+		{%block contenido%}
+			<form class="form-horizontal" action="{% url 'Subir'%}"  method="POST" role="form" enctype="multipart/form-data">
+				{%csrf_token%}
+	            <div class="panel panel-default">
+	                <div class="panel-body">
+				        
+				        <div class="form-group">
+				            <label class="col-sm-2 control-label text-right">Titulo:</label>
+				            <div class="col-sm-10">
+				            	<input type="text" name="titulo" class="form-control">
+				            </div>
+				        </div>
+                         <div class="form-group">
+				            <label class="col-sm-2 control-label text-right">Descripción:</label>
+				            <div class="col-sm-10">
+				            	<textarea type="textarea" name="descripcion" class="form-control"></textarea>
+				            </div>
+				        </div>
+                        <div class="form-group">
+				            <label class="col-sm-2 control-label text-right">Archivo:</label>
+				            <div class="col-sm-10">
+				            	<input type="file" name="archivo" class="form-control">
+				            </div>
+				        </div>
+                        <div class="form-actions text-right">
+                        	<input type="submit" value="Enviar" class="btn btn-primary">
+                        </div>
+
+				    </div>
+				</div>
+			</form>
+		<!-- Fin del Formulario -->
+		{% endblock %}
+		
+
