@@ -1,0 +1,73 @@
+{% extends 'inicio/encabezado.html' %}
+{%block titulo%}Contacto{%endblock%}
+
+{%block imagen%}
+{% load static %}
+{%static 'inicio/images/contact.png'%}
+{% endblock %}
+{%block titulonav%}Contacto{%endblock%}
+{%block titulondev%} Contactanos {%endblock%}
+		{%block header%}
+			<!--Encabezdo -->
+			<div class="page-header">
+				<div class="page-title">
+					<h3>Contactanos
+				    <small>Ingresa tu informacion</small></h3>
+				</div>
+            </div>
+		{%endblock%}
+			<!-- /Encabezado-->
+				<!--Barra-->
+			{%block barra%}
+				<div class="breadcrumb-line">
+					<ul class="breadcrumb">
+					   
+					   <ol>
+						   <a href="{%url 'principal1'%}">
+							   {%if request.path == '/' %}
+								   Principal
+							   {%else%}
+								   Principal{{request.path}}
+							   {%endif%}
+						   </a>
+					  
+						</ol>
+					</ul>
+					</div>
+			{%endblock%}
+				<!-- /Barra-->	
+
+
+
+			<!-- Formulario -->
+		{%block contenido%}
+			<form class="form-horizontal" action="{% url 'Editar' comentario.id%}"  method="POST" role="form">
+				{%csrf_token%}
+	            <div class="panel panel-default">
+	                <div class="panel-body">
+				        
+				        <div class="form-group">
+				            <label class="col-sm-2 control-label text-right">Nombre:</label>
+				            <div class="col-sm-10">
+				            	<input type="text" value={{comentario.usuario}} name="usuario" class="form-control">
+				            </div>
+				        </div>
+                         <div class="form-group">
+				            <label class="col-sm-2 control-label text-right">Mensaje:</label>
+				            <div class="col-sm-10">
+				            	<textarea type="textarea" name="mensaje" class="form-control">
+									{{comentario.mensaje}}
+
+								</textarea>
+				            </div>
+				        </div>
+                        <div class="form-actions text-right">
+                        	<input type="submit" value="Enviar" class="btn btn-primary">
+                        </div>
+
+				    </div>
+				</div>
+		<!-- Fin del Formulario -->
+		{% endblock %}
+		
+

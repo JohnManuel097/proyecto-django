@@ -1,0 +1,68 @@
+{% extends 'inicio/encabezado.html' %}
+{%block titulo%}COMENTARIOS DE CONTACTO{%endblock%}
+
+{%block imagen%}
+{% load static %}
+{%static 'inicio/images/home.png'%}
+{% endblock %}
+{%block titulonav%} Consulta Contacto {%endblock%}
+{%block titulondev%} Comentarios {%endblock%}
+{%block header%}
+
+<!--Encabezdo -->
+<div class="page-header">
+	<div class="page-title">
+		<h3>COMENTARIOS
+			<small>Lista de Comentarios</small>
+		</h3>
+	</div>
+
+
+</div>
+{% endblock %}
+{%block barra%}
+<div class="breadcrumb-line">
+	<ul class="breadcrumb">
+
+		<ol>
+			<a href="{%url 'principal1'%}">
+				{%if request.path == '/' %}
+				Principal
+				{%else%}
+				Principal{{request.path}}
+				{%endif%}
+			</a>
+
+		</ol>
+	</ul>
+</div>
+{% endblock %}
+{%block contenido%}
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Usuario</th>
+			<th>Mensaje</th>
+           <th></th> 
+           <th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for comentario in comentarios %}
+		<tr>
+			<td class="text-semibold">{{comentario.usuario}}</td>
+			<td class="muted ">{{comentario.mensaje}}</td>
+			<td class="muted ">
+				<a href="{%url 'ConsultaIndividual' comentario.id %}">Editar</a>
+			</td>
+			<td class="muted ">
+                <a href="{%url 'Eliminar' comentario.id %}">Eliminar</a>
+            </td>
+		</tr>
+		{% endfor %}
+	</tbody>
+
+
+</table>
+{%endblock%}
+<!-- /Encabezado-->
